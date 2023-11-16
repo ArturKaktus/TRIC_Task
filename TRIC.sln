@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TRIC", "TRIC\TRIC.csproj", "{D8972BE2-5493-4526-84DC-38AFA9F71A79}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tricLib", "tricLib\tricLib.csproj", "{887A0EA6-D260-4121-93C6-3EAA703B4376}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D8972BE2-5493-4526-84DC-38AFA9F71A79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8972BE2-5493-4526-84DC-38AFA9F71A79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8972BE2-5493-4526-84DC-38AFA9F71A79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8972BE2-5493-4526-84DC-38AFA9F71A79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{887A0EA6-D260-4121-93C6-3EAA703B4376}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{887A0EA6-D260-4121-93C6-3EAA703B4376}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{887A0EA6-D260-4121-93C6-3EAA703B4376}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{887A0EA6-D260-4121-93C6-3EAA703B4376}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {58D76722-DD74-43F4-8D9A-57920FA56CE9}
+	EndGlobalSection
+EndGlobal
