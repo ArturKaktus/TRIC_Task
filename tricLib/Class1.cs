@@ -33,7 +33,7 @@ namespace tricLib
                 ServiceStatus = (Status)rnd.Next(0, 3);
                 Description = "Some Text";
                 Thread.Sleep(randTime);
-                UpdateTime = DateTime.Today.AddDays(rnd.Next(-2,0));
+                UpdateTime = DateTime.Today.AddDays(rnd.Next(-3,1));
 
                 for (int j = 1; j < 3; j++)
                 {
@@ -60,8 +60,8 @@ namespace tricLib
              * TotalTimeWorker - Согласованное время работоспособности. Берется в минутах за месяц (43200)
              * TotalTimeChill - Суммарное время простоя. Берется рандомное в минутах 1..120
              */
-            public int TotalTimeWorker { get; } = 43200;
-            public int TotalTimeChill { get; set; }
+            public double TotalTimeWorker { get; } = 43200;
+            public double TotalTimeChill { get; set; }
         }
 
         public class History

@@ -21,20 +21,21 @@ namespace TRIC.ModelView
         private string _CountList = string.Empty;
         private RelayCommand _addListCommand;
         private Class1 _Class1;
+        private List<Class1.Service> _ServiceListMain;
         private List<Class1.Service> _ServiceList;
+        private List<Class1.Service> _ServiceActiveList;
 
         private Class1.Service _SelectedService;
         private string _ServiceName;
         private string _ServiveStatus;
         private string _ServiceDescription;
         private string _ServiceSLA;
+        private string _ServiceTime;
+
+        private bool isActive = false;
         public MainWindowMV()
         {
-            _addListCommand = new RelayCommand(obj =>
-            {
-                //_Class1 = new Class1(string.IsNullOrEmpty(CountList) ? 1 : int.Parse(CountList));
-                MessageBox.Show("asd");
-            });
+
         }
         public string CountList { 
             get => _CountList;
@@ -53,19 +54,15 @@ namespace TRIC.ModelView
             get => _SelectedService;
             set
             {
-                if (value == _SelectedService) return;
+                if (value == _SelectedService || value == null) return;
 
                 _SelectedService = value;
                 ServiceName = _SelectedService.Name;
                 ServiceStatus = _SelectedService.ServiceStatus.ToString();
                 ServiceDescription = _SelectedService.Description;
+                ServiceTime = _SelectedService.UpdateTime.ToString(CultureInfo.InvariantCulture); 
 
-                var totalWorker = Convert.ToDouble(_SelectedService.TotalTimeWorker);
-                var totalDown = Convert.ToDouble(_SelectedService.TotalTimeChill);
-                var s = (totalWorker - totalDown) / totalWorker * 100;
-
-                double sla = Math.Round(s, 3);
-                ServiceSLA = Convert.ToString(sla, CultureInfo.InvariantCulture);
+                ServiceSLA = Convert.ToString(_Class1.GetPercentSlaByName(ServiceName), CultureInfo.InvariantCulture);
             }
         }
         public string ServiceName
@@ -120,6 +117,19 @@ namespace TRIC.ModelView
             }
         }
 
+        public string ServiceTime
+        {
+            get => _ServiceTime;
+            set
+            {
+                if (_ServiceTime != value)
+                {
+                    _ServiceTime = value;
+                    OnPropertyChanged(nameof(ServiceTime));
+                }
+            }
+        }
+
         public List<Class1.Service> ServiceList
         {
             get => _ServiceList;
@@ -136,7 +146,9 @@ namespace TRIC.ModelView
         public void AddList()
         {
             _Class1 = new Class1(string.IsNullOrEmpty(CountList) ? 1 : int.Parse(CountList));
-            ServiceList = _Class1.ServiceList;
+            _ServiceListMain = _Class1.ServiceList;
+            _ServiceActiveList = _Class1.GetActualStatus();
+            ServiceList = _ServiceListMain;
         }
 
         public void SaveToJson()
@@ -150,6 +162,20 @@ namespace TRIC.ModelView
             {
                 var json = JsonSerializer.Serialize(SelectedService);
                 File.WriteAllText(saveJson.FileName, json);
+            }
+        }
+
+        public void ActiveList()
+        {
+            if (isActive)
+            {
+                ServiceList = _ServiceListMain;
+                isActive = false;
+            }
+            else
+            {
+                ServiceList = _ServiceActiveList;
+                isActive = true;
             }
         }
 

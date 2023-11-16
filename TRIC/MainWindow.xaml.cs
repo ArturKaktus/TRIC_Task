@@ -46,5 +46,10 @@ namespace TRIC
         {
             mainWindow.SaveToJson();
         }
+
+        private void Button_Active(object sender, RoutedEventArgs e)
+        {
+            mainWindow.ActiveList();
+        }
     }
 }
